@@ -20,23 +20,22 @@ links = []
 rows = soup.select('table[class*="roundy"] tr[style*="background:#FFF"]')
 
 for row in rows:
-
-    if row.find("td").get("rowspan") != None:
-        names.append(row.find_all("td", style = None)[1].text.strip())
+  if row.find("td").get("rowspan") != None:
+    names.append(row.find_all("td", style = None)[1].text.strip())
 
 
 names_with_forms = []
 
 for generation in generations:
-    names_with_forms.extend([name.text for name in generation.find_all("td", style = None)[1::2]])
+  names_with_forms.extend([name.text for name in generation.find_all("td", style = None)[1::2]])
 
 
-pokemon_with_forms = pd.concat([pokemon, pd.DataFrame({"Names_with_forms": names_with_forms})], ignore_index = True)
+#pokemon_with_forms = pd.concat([pokemon, pd.DataFrame({"Names_with_forms": names_with_forms})], ignore_index = True)
 pokemon = pd.concat([pokemon, pd.DataFrame({"Name":names})], ignore_index = True)
 
 
 print(pokemon)
-print(pokemon_with_forms)
+#print(pokemon_with_forms)
 
 
 
